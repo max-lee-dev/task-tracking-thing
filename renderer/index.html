@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>focus</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Bar: always visible -->
+  <div class="bar" id="bar">
+    <div class="pip" id="pip"></div>
+    <div class="bar-task-wrap">
+      <span class="bar-label">currently...</span>
+      <span id="task-display" class="task-name placeholder">what are you working on?</span>
+      <input id="task-input" class="task-input" type="text" placeholder="what are you working on?" />
+    </div>
+    <span class="bar-timer" id="bar-timer"></span>
+    <button class="done-btn" id="done-btn" title="Complete task">✓</button>
+    <!-- Subtle check progress: thin arc in top-right corner -->
+    <svg class="check-ring" id="check-ring" viewBox="0 0 20 20">
+      <circle class="check-ring-track" cx="10" cy="10" r="7"/>
+      <circle class="check-ring-fill" id="check-ring-fill" cx="10" cy="10" r="7"/>
+    </svg>
+  </div>
+
+  <!-- Expanded panel -->
+  <div class="panel" id="panel">
+    <div class="panel-controls">
+      <button class="ctrl-btn" id="pause-btn" title="Pause">⏸</button>
+      <button class="ctrl-btn" id="check-now-btn" title="Check now">↺</button>
+      <button class="ctrl-btn" id="queue-btn" title="Task queue">≡</button>
+      <button class="ctrl-btn" id="history-btn" title="History">◷</button>
+      <button class="ctrl-btn" id="info-btn" title="Stats">ℹ</button>
+      <button class="ctrl-btn" id="settings-btn" title="Settings">⚙</button>
+      <button class="ctrl-btn" id="close-btn" title="Quit">✕</button>
+    </div>
+    <span class="status-text" id="status-label"></span>
+    <span class="reason-text" id="reason-row"></span>
+    <button class="correct-btn" id="correct-btn">actually this is fine</button>
+    <div class="panel-footer">
+      <span id="timer-label"></span>
+      <span id="next-check-label"></span>
+    </div>
+  </div>
+
+  <!-- Completion overlay -->
+  <div class="complete-overlay" id="complete-overlay">
+    <div class="complete-check" id="complete-check-icon">✓</div>
+    <div class="complete-label" id="complete-done-label">done</div>
+    <div class="complete-upnext" id="complete-upnext"></div>
+  </div>
+
+  <!-- Settings overlay -->
+  <div class="overlay" id="settings-panel">
+    <div class="s-header">
+      <span class="s-title">settings</span>
+      <button class="ctrl-btn" id="settings-close-btn">✕</button>
+    </div>
+    <div class="s-field">
+      <label class="s-label">gemini api key</label>
+      <input class="s-input" id="s-apikey" type="password" placeholder="AIza…" />
+    </div>
+    <div class="s-field">
+      <label class="s-label">elevenlabs api key</label>
+      <input class="s-input" id="s-elevenlabs" type="password" placeholder="sk_…" />
+    </div>
+    <div class="s-field">
+      <label class="s-label">check every (seconds)</label>
+      <input class="s-input" id="s-interval" type="number" min="10" max="600" />
+    </div>
+    <div class="s-field s-row">
+      <label class="s-label">strict mode (all screens)</label>
+      <label class="toggle">
+        <input type="checkbox" id="s-strict" />
+        <span class="toggle-track"></span>
+      </label>
+    </div>
+    <div class="s-field s-row">
+      <label class="s-label">auto-delete screenshots</label>
+      <label class="toggle">
+        <input type="checkbox" id="s-autodelete" />
+        <span class="toggle-track"></span>
+      </label>
+    </div>
+    <button class="s-save" id="settings-save-btn">save</button>
+  </div>
+
+  <!-- Queue overlay -->
+  <div class="overlay" id="queue-panel">
+    <div class="s-header">
+      <span class="s-title">queue</span>
+      <button class="ctrl-btn" id="queue-close-btn">✕</button>
+    </div>
+    <div id="queue-list" class="overlay-scroll"></div>
+    <div class="queue-add-row">
+      <input class="s-input" id="queue-input" type="text" placeholder="add task to queue…" />
+      <button class="s-save queue-add-btn" id="queue-add-btn">+</button>
+    </div>
+  </div>
+
+  <!-- History overlay -->
+  <div class="overlay" id="history-panel">
+    <div class="s-header">
+      <span class="s-title">history</span>
+      <button class="ctrl-btn" id="history-close-btn">✕</button>
+    </div>
+    <div id="history-list" class="overlay-scroll"></div>
+  </div>
+
+  <!-- Info overlay -->
+  <div class="overlay" id="info-panel">
+    <div class="s-header">
+      <span class="s-title">stats</span>
+      <button class="ctrl-btn" id="info-close-btn">✕</button>
+    </div>
+    <div id="info-content"></div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "focus",
+  "version": "1.0.0",
+  "description": "A floating AI-powered focus monitor that checks if you're actually working",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "@google/genai": "^1.0.0",
+    "electron": "^36.0.0",
+    "geist": "^1.7.0"
+  },
+  "license": "MIT"
+}
