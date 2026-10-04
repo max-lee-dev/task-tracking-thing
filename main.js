@@ -46,7 +46,7 @@ async function runCheck() {
   win.webContents.send('checking');
 
   try {
-    const image = takeScreenshot(options.autoDelete);
+    const image = await takeScreenshot(options.autoDelete);
     const { onTask, reason, insult, costUsd } = await checkOnTask(image, options.task, options.focusMode, options.exceptions);
 
     options.totalChecks++;

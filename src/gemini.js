@@ -21,7 +21,7 @@ async function checkOnTask(imageBase64, task, focusMode = 'any', exceptions = []
     : `At least one screen must be showing work related to the task. However, if Twitter/X is visible on ANY screen, the answer is automatically no.`;
 
   const response = await client.models.generateContent({
-    model: 'gemini-2.0-flash',
+    model: 'gemini-3.8-flash',
     contents: [
       { inlineData: { mimeType: 'image/png', data: imageBase64 } },
       {
